@@ -2,6 +2,7 @@ public class Game {
     boolean start(int gamemode) {
         switch (gamemode) {
             case 1 : {
+                feedLine(10);
 
             } break;
             case 2 : {
@@ -9,7 +10,6 @@ public class Game {
 
             } break;
             case 3 : {
-                feedLine(10);
                 System.out.println("바꿀 키의 번호를 입력하세요.");
                 for (int i = 0; i < keys.length; i++) {
                     System.out.println((i + 1) + ". " + keys[i] + " ----- " + selectkey[i]);
@@ -45,8 +45,6 @@ public class Game {
                 feedLine(10);
                 System.out.println(this.selectkey[0] + "를 눌러 선택하세요.\n");
             }
-            if (select > 3 || select < 1)
-                System.err.println("1부터 3 사이의 값을 입력하세요.");
             if (select >= 1 && select <= 3) {
                 for (int i = 0; i < modes.length; i++) {
                     if (select - 1 == i) {
@@ -83,5 +81,5 @@ public class Game {
         return "\u001B[32m" + s + "\u001B[0m";
     }
     String keys[] = {"선택"};
-    static char selectkey[] = {'s'};   // 0.select
+    static char selectkey[] = {'s'};   // 0 - 선택
 }
