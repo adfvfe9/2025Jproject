@@ -7,14 +7,12 @@ public class Main {
         char selectkey[] = {'s'};   // 0 - 선택
 
         while (true) {
-            // startMenu() 로직
             String modes[] = {"1. 게임 시작", "2. 게임 설명", "3. 설정"};
             int select = -1;
             int fsel = 0;
             boolean isSelect = false;
-            System.out.print("\033[H\033[2J");
+
             while (true) {
-                System.out.print("\033[H\033[2J");
                 if (!isSelect) {
                     System.out.println("게임 모드를 선택하세요.\n");
                     for (String mode : modes) {
@@ -68,6 +66,7 @@ public class Main {
                             break;
                         }
                     }
+
                 } break;
 
                 case 2: {
