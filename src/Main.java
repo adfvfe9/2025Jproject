@@ -13,7 +13,6 @@ public class Main {
             int fsel = 0;
             boolean isSelect = false;
             System.out.print("\033[H\033[2J");
-
             while (true) {
                 System.out.print("\033[H\033[2J");
                 if (!isSelect) {
