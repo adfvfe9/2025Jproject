@@ -1,13 +1,14 @@
+import java.io.File;
 import java.util.Scanner;
 
 public class Main {
+    static Scanner scan = new Scanner(System.in); // 쓰기 편하게 하려고 static
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
         String keys[] = {"선택"};
         char selectkey[] = {'s'};   // 0 - 선택
-
+        System.out.println(Game.SCREENWIDTH + " * " + Game.SCREENHEIGHT);
         while (true) {
-            String modes[] = {"1. 게임 시작", "2. 게임 설명", "3. 설정"};
+            String modes[] = {"1. 게임 시작", "2. 게임 설명", "3. 설정", "4. 프로그램 종료"};
             int select = -1;
             int fsel = 0;
             boolean isSelect = false;
@@ -23,7 +24,7 @@ public class Main {
                     System.out.println(selectkey[0] + "를 눌러 선택하세요.\n");
                 }
 
-                if (select >= 1 && select <= 3) {
+                if (select >= 1 && select <= 4) {
                     for (int i = 0; i < modes.length; i++) {
                         if (select - 1 == i) {
                             System.out.println(red(modes[i]) + red(" <"));
@@ -37,7 +38,7 @@ public class Main {
                 String input = scan.next();
                 if (input.length() == 1) {
                     char c = input.charAt(0);
-                    if (c >= '1' && c <= '3') {
+                    if (c >= '1' && c <= '4') {
                         select = c - '0';
                         isSelect = true;
                     } else if (isSelect && c == selectkey[0]) {
@@ -59,10 +60,7 @@ public class Main {
                         if (n < 2 || n > 4) {
                             System.out.println("2 ~ 4 사이의 정수를 입력하세요.");
                         } else {
-                            Player[] p = new Player[n];
-                            for (int i = 0; i < p.length; i++) {
-                                p[i] = new Player();
-                            }
+                            new Game(n);
                             break;
                         }
                     }
@@ -89,22 +87,24 @@ public class Main {
                     selectkey[changeKeyNum - 1] = scan.next().charAt(0);
                     System.out.println(green("변경되었습니다!"));
                 } break;
+
+                case 4 : {
+                    System.out.println("프로그램을 종료합니다.");
+                    return;
+                }
             }
 
             if (!continueGame) break;
         }
     }
-
     static void feedLine(int a) {
         for (int i = 1; i <= a; i++) {
             System.out.println();
         }
     }
-
     static String red(String s) {
         return "\u001B[31m" + s + "\u001B[0m";
     }
-
     static String green(String s) {
         return "\u001B[32m" + s + "\u001B[0m";
     }
