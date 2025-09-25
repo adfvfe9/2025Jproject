@@ -16,7 +16,7 @@
             JPanel panel = new JPanel();
             panel.setLayout(null);  // 레이아웃 설정 없음? -> 좌표, 크기 내가 다 설정해야함 ㅈㄴ 귀찮노
             panel.setFocusable(true);  // 포커스 이놈한테 받을거라고 선언
-            panel.setBounds(0, 0, SCREENWIDTH, SCREENHEIGHT); // 크기 설정 (시발 이거때문에 몇시간 날린거야)
+            panel.setBounds(0, 0, SCREENWIDTH, SCREENHEIGHT); // 크기 설정 (시발 이거때문에 몇시간 날린거야)  //TODO 얘 크기 동적으로 설정하기
             panel.setOpaque(false);
             this.add(panel);    // 프레임에 추가
 
@@ -44,4 +44,5 @@
             panel.requestFocusInWindow(); // 진짜 포커스 주기 (이놈도 마지막에)
         }
     }
+
 
