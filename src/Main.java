@@ -47,11 +47,7 @@ public class Main {
                     }
                 }
             }
-
-            int gamemode = fsel;
-            boolean continueGame = true;
-
-            switch (gamemode) {
+            switch (fsel) {
                 case 1: {
                     feedLine(10);
                     while (true) {
@@ -93,8 +89,6 @@ public class Main {
                     return;
                 }
             }
-
-            if (!continueGame) break;
         }
     }
     static void feedLine(int a) {
