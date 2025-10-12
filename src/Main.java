@@ -5,8 +5,7 @@ public class Main {
     static Scanner scan = new Scanner(System.in); // 쓰기 편하게 하려고 static
     public static void main(String[] args) {
         String keys[] = {"선택"};
-        char selectkey[] = {'s'};   // 0 - 선택
-        System.out.println(Game.SCREENWIDTH + " * " + Game.SCREENHEIGHT);
+        char selectkey[] = {'s'};
         while (true) {
             String modes[] = {"1. 게임 시작", "2. 게임 설명", "3. 설정", "4. 프로그램 종료"};
             int select = -1;
