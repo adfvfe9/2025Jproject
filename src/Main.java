@@ -4,11 +4,12 @@ import java.util.*;
 public class Main {
     static Scanner scan = new Scanner(System.in);
     static Random ran = new Random();
+    static String keys[] = {"상호작용", "취소"};
+    static char selectkey[] = {'s', 'q'};
+    static Object settings[][] = new Object[][]{{"딜레이 On / Off", true}};
     public static void main(String[] args) {
-        String keys[] = {"상호작용"};
-        char selectkey[] = {'s'};
         while (true) {
-            String modes[] = {"1. 게임 시작", "2. 게임 설명", "3. 설정", "4. 프로그램 종료"};
+            String modes[] = {"1. 게임 시작", "2. 게임 설명", "3. 키 설정", "4. 기능 설정", "5. 프로그램 종료"};
             int select = -1;
             int fsel = 0;
             boolean isSelect = false;
@@ -48,6 +49,7 @@ public class Main {
                     }
                 }
             }
+
             switch (fsel) {
                 case 1: {
                     resetScreen();
@@ -77,15 +79,44 @@ public class Main {
                 } break;
 
                 case 4 : {
+                    System.out.println("바꿀 설정의 번호를 입력하세요.");
+                    for (int i = 0; i < settings.length; i++) {
+                        System.out.println((i + 1) + ". " + settings[i][0] + " ----- " + ((boolean)settings[i][1] ? "켜짐" : "꺼짐"));
+                    }
+                    int changeKeyNum;
+                    while (true) {
+                        changeKeyNum = scan.nextInt();
+                        if (changeKeyNum >= 1 && changeKeyNum <= settings.length) {
+                            break;
+                        }
+                    }
+                    scan.nextLine();
+                    System.out.print(red(settings[changeKeyNum - 1][0].toString()) + " 설정을 " + (((boolean)settings[changeKeyNum - 1][1]) ? "끄시겠습니까? " : "켜시겠습니까? ") + "(" + selectkey[0] + " / " + selectkey[1] + ") : ");
+                    char input = scan.nextLine().charAt(0);
+                    if (input == selectkey[0]) {
+                        settings[changeKeyNum - 1][1] = !(boolean)settings[changeKeyNum - 1][1];
+                        System.out.println(green("변경되었습니다!"));
+                    } else if (input == selectkey[1]) {
+                        System.out.println("취소되었습니다!");
+                    } else {
+                        System.err.println("올바르지 않은 입력입니다!");
+                    }
+                    newLine();
+                    break;
+                }
+
+                case 5 : {
                     System.out.println("프로그램을 종료합니다.");
                     return;
                 }
             }
         }
     }
+
     static void resetScreen() {
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
+
     static void newLine() {
         System.out.println("-------------------------------------------------");
     }
