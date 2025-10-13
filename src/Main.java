@@ -1,10 +1,11 @@
 import java.io.File;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
-    static Scanner scan = new Scanner(System.in); // 쓰기 편하게 하려고 static
+    static Scanner scan = new Scanner(System.in);
+    static Random ran = new Random();
     public static void main(String[] args) {
-        String keys[] = {"선택"};
+        String keys[] = {"상호작용"};
         char selectkey[] = {'s'};
         while (true) {
             String modes[] = {"1. 게임 시작", "2. 게임 설명", "3. 설정", "4. 프로그램 종료"};
@@ -19,7 +20,7 @@ public class Main {
                         System.out.println(mode);
                     }
                 } else {
-                    feedLine(10);
+                    resetScreen();
                     System.out.println(selectkey[0] + "를 눌러 선택하세요.\n");
                 }
 
@@ -42,28 +43,19 @@ public class Main {
                         isSelect = true;
                     } else if (isSelect && c == selectkey[0]) {
                         System.out.println(green("선택되었습니다!"));
+                        newLine();
                         break;
                     }
                 }
             }
             switch (fsel) {
                 case 1: {
-                    feedLine(10);
-                    while (true) {
-                        System.out.print("2명 ~ 4명 사이의 인원 수 입력 : ");
-                        int n = scan.nextInt();
-                        if (n < 2 || n > 4) {
-                            System.out.println("2 ~ 4 사이의 정수를 입력하세요.");
-                        } else {
-                            new Game(n);
-                            break;
-                        }
-                    }
-
+                    resetScreen();
+                    new Game().start();
                 } break;
 
                 case 2: {
-                    feedLine(10);
+                    resetScreen();
                 } break;
 
                 case 3: {
@@ -78,9 +70,10 @@ public class Main {
                             break;
                         }
                     }
-                    System.out.print(keys[changeKeyNum - 1] + " 키를 무슨 키로 바꾸시겠습니까? : ");
+                    System.out.print(red(keys[changeKeyNum - 1] + " (" + selectkey[changeKeyNum - 1] + ") ") + "키를 무슨 키로 바꾸시겠습니까? : ");
                     selectkey[changeKeyNum - 1] = scan.next().charAt(0);
                     System.out.println(green("변경되었습니다!"));
+                    newLine();
                 } break;
 
                 case 4 : {
@@ -90,10 +83,11 @@ public class Main {
             }
         }
     }
-    static void feedLine(int a) {
-        for (int i = 1; i <= a; i++) {
-            System.out.println();
-        }
+    static void resetScreen() {
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    }
+    static void newLine() {
+        System.out.println("-------------------------------------------------");
     }
     static String red(String s) {
         return "\u001B[31m" + s + "\u001B[0m";
