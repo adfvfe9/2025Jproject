@@ -56,4 +56,8 @@ class Player {
     void resetItems() {
         Arrays.fill(items, "");
     }
+
+    void heal(int health) {
+        this.health = Math.min(this.health + health, maxhealth);
+    }
 }
