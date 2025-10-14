@@ -3,6 +3,8 @@ class Bot extends Player {
         super(name, maxhealth);
     }
     void play(Game game) {
-
+        for (String i : this.items) {
+            //if ()   //TODO 이것좀만들어
+        }
     }
 }
