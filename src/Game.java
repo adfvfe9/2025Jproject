@@ -131,6 +131,7 @@ class Game {
 
     void botTurn() {
         b.play(this);
+        isPlayerRound = true;
     }
 
     void roundEndCheck() {
