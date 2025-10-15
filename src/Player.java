@@ -36,9 +36,7 @@ class Player {
             }
         }
         s.append(" | ");
-        if (getItemCount() == -1) {
-            s.append(Arrays.toString(items));
-        } else if (getItemCount() == 0) {
+        if (getItemCount() == 0) {
             s.append("아이템 없음");
         } else {
             s.append("[");
