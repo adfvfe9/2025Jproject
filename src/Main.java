@@ -8,7 +8,6 @@ public class Main {
     static char selectkey[] = {'s', 'q'};
     static Object settings[][] = new Object[][]{{"딜레이 On / Off", true}};
     public static void main(String[] args) {
-
         while (true) {
             String modes[] = {"1. 게임 시작", "2. 게임 설명", "3. 키 설정", "4. 기능 설정", "5. 프로그램 종료"};
             int select = -1;
@@ -54,7 +53,8 @@ public class Main {
             switch (fsel) {
                 case 1: {
                     resetScreen();
-                    new Game().start();
+                    Game g = new Game();
+                    g.start();
                 } break;
 
                 case 2: {

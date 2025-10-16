@@ -8,6 +8,7 @@ class Game {
     boolean isPlayerRound = true;
     boolean playerSugab = false;
     boolean botSugab = false;
+    boolean isPlayerWin = false;
     int ironTobBonus = 0;
     int index = 0;
     boolean bullets[];
@@ -29,7 +30,8 @@ class Game {
             if (isPlayerRound) {
                 playerTurn();
             } else {
-                botTurn();
+                b.play(this);
+                isPlayerRound = true;
             }
 
             if (victoryCheck()) break Outer;
@@ -43,6 +45,7 @@ class Game {
             printRound();
             bullets = printBullets();
             index = 0;
+            b.knownBullets.clear();
         }
     }
 
@@ -129,11 +132,6 @@ class Game {
         }
     }
 
-    void botTurn() {
-        b.play(this);
-        isPlayerRound = true;
-    }
-
     void roundEndCheck() {
         if (index >= bullets.length) {
             isFirstOfRound = true;
@@ -144,6 +142,7 @@ class Game {
         if (b.health <= 0) {
             if (currentRound == 3) { // 현재 라운드가 3라운드인지 확인
                 System.out.println(Main.green("\n게임을 클리어하셨습니다!\n"));
+                isPlayerWin = true;
                 return true; // 게임 클리어 메시지 출력 후 true를 반환하여 게임 종료
             } else {
                 System.out.println(Main.green("\n승리했습니다!\n"));
@@ -316,7 +315,11 @@ class Game {
                 break;
             }
             case "아드레날린" : {
-                int botItemSel = 0;
+                int botItemSel;
+                if (b.getItemCount() == 0) {
+                    System.out.println("봇이 가지고 있는 아이템이 없습니다!");
+                    break;
+                }
                 while (true) {
                     System.out.print("빼앗을 아이템의 번호를 입력하세요 (취소: " + Main.selectkey[1] + ") : ");
                     String input = Main.scan.next();
@@ -360,9 +363,14 @@ class Game {
             case "진통제" : {
                 p.heal(1);
                 System.out.println("♥️ 플레이어의 체력이 1만큼 회복되었습니다!");
+                break;
             }
             case "에너지 드링크" : {
-                System.out.println((bullets[index++]) ? "실탄" : "공포탄" + "을 하나 제거하였습니다.");
+                if (index >= bullets.length) {
+                    System.out.println("제거할 총알이 없습니다!");
+                    break;
+                }
+                System.out.println(((bullets[index++]) ? "실탄" : "공포탄") + "을 하나 제거하였습니다.");
                 break;
             }
         }

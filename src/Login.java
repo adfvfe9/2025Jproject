@@ -1,6 +1,16 @@
-public class Login {
-    Login() {
+import java.io.*;
 
+class Login {
+    void login() {
+        try {
+            String datas = "";
+            FileReader fr = new FileReader("data/data.dat");
+            BufferedReader b = new BufferedReader(fr);
+            while (true) {
+
+            }
+        } catch(FileNotFoundException e) {
+            System.out.println("📁 data 폴더에 파일 없음");
+        }
     }
-    //TODO 파일 입출력 / DB 써서 idpw 저장, System.getProperty("user.name")으로 계정 구분해서 아이디 저장 해도 될듯?
 }
